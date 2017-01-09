@@ -55,12 +55,13 @@ app.put('/blog-posts/:id', function(req, res) {
         content: req.body.content,
         author: req.body.author,
     });
-    res.status(204).json(updatedPost);
+    res.status(201);
+    res.json(updatedPost);
 });
 
 app.delete('/blog-posts/:id', (req, res) => {
     BlogPosts.delete(req.params.id)
-    res.status(204).send('Deleted post');
+    res.status(200).send('Deleted post');
 });
 
 let server;
