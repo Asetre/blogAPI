@@ -41,5 +41,27 @@ describe('API requests', function(){
                 });            
         });
     });
+
+    describe('POST endpoint', function() {
+        it('should create a new post', function() {
+            const newPost = {
+                title: 'newTitle',
+                content: 'some content',
+                author: 'BizzBang'
+            }
+            return chai.request(app)
+                .post('/blog-posts')
+                .send(newPost)
+                .then(function(res) {
+                    res.should.have.status(201);
+                    res.body.title.should.equal(newPost.title);
+                    res.body.title.should.be.a('string');
+                    res.body.content.should.equal(newPost.content);
+                    res.body.content.should.be.a('string');
+                    res.body.author.should.equal(newPost.author);
+                    res.body.author.should.be.a('string');
+                });
+        });
+    });
 });
 
